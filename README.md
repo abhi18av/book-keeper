@@ -1,2 +1,2 @@
 # book-keeper
-A personal software for managing e-library
+ A clojure repl for managing my personal e-library
