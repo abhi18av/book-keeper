@@ -27,6 +27,9 @@
                  [zcaudate/hara "2.8.6"]
                  [zcaudate/lucid "1.4.6"]
 
+
+  ;; Github java api
+
   ;; This is for traversing the nested clojure data structure
                  [com.rpl/specter "1.0.3"]
 
