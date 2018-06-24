@@ -41,13 +41,12 @@
 (require '[clojure.java.io :as io]
 '[cognitect.transit :as t])
 
-(def c [{:id 12 :name "John"}])
 
   (def direc "./_scratch/")
 
 (defn write-transit [dir file-name file-type coll]
 (let [suffix {:json ".json" :json-verbose ".verbose.json" :msgpack ".mp"}]
-  (with-open [out (io/output-stream 
+  (with-open [out (io/output-stream
                    (str dir "/" file-name (file-type suffix)))]
     (t/write (t/writer out file-type) coll))))
 
@@ -58,9 +57,13 @@
 
 
 
-(write-transit direc "test" :json c)
+(write-transit direc "files" :json files)
 
-(read-transit direc "test" :json)
+(read-transit direc "files" :json)
+
+
+
+
 
 ;; Datomic operations
 
@@ -84,7 +87,7 @@
 @(d/transact conn schema-tx)
 
 ;; parse seed data edn file
-(def data-tx (read-string (slurp "_resources/datomic-free-0.9.5703/samples/seattle/seattle-data0.edn")))
+(def data-tx (read-string (slurp "_scratch/ebooks-data.edn")))
 
 ;; display first three statements in seed data transaction
 (first data-tx)
