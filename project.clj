@@ -61,7 +61,7 @@
 
   ;; Data Serialization
                  [com.cognitect/transit-clj "0.8.300"]
-
+                 [com.taoensso/nippy "2.14.0"]
   ;; Shell library
                  [me.raynes/conch "0.8.0"]
 

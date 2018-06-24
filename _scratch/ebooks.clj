@@ -1,6 +1,10 @@
 ;; I'll start dealing with the ebooks in a directory
 
 (use 'clojure.pprint)
+(require '[clojure.edn :as edn])
+(require '[taoensso.nippy :as nippy])
+
+
 
 (def folder (clojure.java.io/file "/Users/eklavya/Downloads/transmissionCompleted/eBooks"))
 
@@ -8,6 +12,9 @@
  (mapv str (filter #(.isFile %) (file-seq folder))))
 
 (count files)
+
+(println
+(prn-str files))
 
 
 (pprint files)
@@ -27,6 +34,33 @@
        (filter #(.matches grammar-matcher (.getFileName (.toPath %))))
        (mapv #(.getAbsolutePath %))))
 
+
+
+
+
+(require '[clojure.java.io :as io]
+'[cognitect.transit :as t])
+
+(def c [{:id 12 :name "John"}])
+
+  (def direc "./_scratch/")
+
+(defn write-transit [dir file-name file-type coll]
+(let [suffix {:json ".json" :json-verbose ".verbose.json" :msgpack ".mp"}]
+  (with-open [out (io/output-stream 
+                   (str dir "/" file-name (file-type suffix)))]
+    (t/write (t/writer out file-type) coll))))
+
+(defn read-transit [dir file-name file-type]
+(let [suffix {:json ".json" :json-verbose ".verbose.json" :msgpack ".mp"}]
+(with-open [in (io/input-stream (str dir "/" file-name (file-type suffix)))]
+  (t/read (t/reader in file-type)))))
+
+
+
+(write-transit direc "test" :json c)
+
+(read-transit direc "test" :json)
 
 ;; Datomic operations
 

@@ -1,0 +1,13 @@
+[
+
+ ;; I'm customizing it from the seattle schema /Users/eklavya/projects/code/book-keeper/_resources/datomic-free-0.9.5703/samples/seattle/seattle-schema.edn
+
+ ;; filepaths
+
+ {:db/ident :file/name
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/fulltext true
+  :db/doc "all files in the directory"}
+
+]
