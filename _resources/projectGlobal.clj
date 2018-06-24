@@ -166,10 +166,13 @@
 
                  [metasoarous/oz "1.2.2"]
 
+;; Utils 
                  [zcaudate/hara "2.8.2"]
                  [zcaudate/lucid "1.4.4"]
 
                  [environ "1.1.0"]
+
+
                  [org.onyxplatform/onyx "0.12.7"]
 
 ;; For remote data access - haxl
