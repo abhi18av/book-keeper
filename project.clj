@@ -27,8 +27,13 @@
                  [zcaudate/hara "2.8.6"]
                  [zcaudate/lucid "1.4.6"]
 
+  ;; Unix4j
+                 [org.unix4j/unix4j-command "0.5"]
 
-  ;; Github java api
+
+  ;; SQL
+                 ;[walkable "1.0.0-SNAPSHOT"]
+
 
   ;; This is for traversing the nested clojure data structure
                  [com.rpl/specter "1.0.3"]

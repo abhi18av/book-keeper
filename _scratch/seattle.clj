@@ -1,36 +1,12 @@
-;; I'll start dealing with the ebooks in a directory
-
-
-(use 'hara.reflect)
-
-
-
-(use 'clojure.pprint)
-
-(def folder (clojure.java.io/file "/Users/eklavya/Downloads/transmissionCompleted/eBooks"))
-
-(def files (file-seq folder))
-
-(pprint
- (take 10 files))
-
-(pprint
- (mapv str (filter #(.isFile %) files)))
-
-(import org.unix4j.Unix4j )
-
-
-(class-hierarchy String)
-
-(import org.unix4j.unix.Ls)
-
-(org.unix4j.unix.Ls )
-
-(def unix-ls (new org.unix4j.unix.Ls))
-
-;; Datomic operations
+;; This file contains code examples for getting-started.html. They are
+;; written in clojure, for use with Datomic's interactive repl. You can
+;; start the repl by running 'bin/repl' from the datomic directory.
+;; Once the repl is running, you can copy code into it or, if invoke it
+;; directory from your editor, based on your configuration.
 
 (use '[datomic.api :only [q db] :as d])
+(use 'clojure.pprint)
+
 ;; store database uri
 (def uri "datomic:mem://seattle")
 
@@ -104,42 +80,42 @@
 
 ;; find all community names and pull their urls
 (pprint (seq (q '[:find ?n (pull ?c [:community/url])
-                  :where
-                  [?c :community/name ?n]]
-                (db conn))))
+                      :where
+                      [?c :community/name ?n]]
+                    (db conn))))
 
 ;; find all categories for community named "belltown"
 (pprint (q '[:find [?c ...]
-             :where
-             [?e :community/name "belltown"]
-             [?e :community/category ?c]]
-           (db conn)))
+                      :where
+                      [?e :community/name "belltown"]
+                      [?e :community/category ?c]]
+                    (db conn)))
 
 ;; find names of all communities that are twitter feeds
 (pprint (q '[:find [?n ...]
-             :where
-             [?c :community/name ?n]
-             [?c :community/type :community.type/twitter]]
-           (db conn)))
+                    :where
+                    [?c :community/name ?n]
+                    [?c :community/type :community.type/twitter]]
+                  (db conn)))
 
 ;; find names of all communities that are in the NE region
 (pprint (q '[:find [?c_name ...]
-             :where
-             [?c :community/name ?c_name]
-             [?c :community/neighborhood ?n]
-             [?n :neighborhood/district ?d]
-             [?d :district/region :region/ne]]
-           (db conn)))
+                      :where
+                      [?c :community/name ?c_name]
+                      [?c :community/neighborhood ?n]
+                      [?n :neighborhood/district ?d]
+                      [?d :district/region :region/ne]]
+                    (db conn)))
 
 ;; find names and regions of all communities
 (pprint (seq (q '[:find ?c_name ?r_name
-                  :where
-                  [?c :community/name ?c_name]
-                  [?c :community/neighborhood ?n]
-                  [?n :neighborhood/district ?d]
-                  [?d :district/region ?r]
-                  [?r :db/ident ?r_name]]
-                (db conn))))
+                      :where
+                      [?c :community/name ?c_name]
+                      [?c :community/neighborhood ?n]
+                      [?n :neighborhood/district ?d]
+                      [?d :district/region ?r]
+                      [?r :db/ident ?r_name]]
+                    (db conn))))
 
 ;; find all communities that are twitter feeds and facebook pages
 ;; using the same query and passing in type as a parameter
@@ -165,12 +141,12 @@
 ;; find all communities that are twitter feeds or facebook pages using
 ;; one query and a list of individual parameters
 (pprint (seq (q '[:find ?n ?t
-                  :in $ [?t ...]
-                  :where
-                  [?c :community/name ?n]
-                  [?c :community/type ?t]]
-                (db conn)
-                [:community.type/facebook-page :community.type/twitter])))
+                      :in $ [?t ...]
+                      :where
+                      [?c :community/name ?n]
+                      [?c :community/type ?t]]
+                    (db conn)
+                    [:community.type/facebook-page :community.type/twitter])))
 
 ;; find all communities that are non-commercial email-lists or commercial
 ;; web-sites using a list of tuple parameters
@@ -277,7 +253,7 @@
 
 ;; Find all transaction times, sort them in reverse order
 (def tx-instants (reverse (sort (q '[:find [?when ...] :where [_ :db/txInstant ?when]]
-                                   (db conn)))))
+                                       (db conn)))))
 
 ;; pull out two most recent transactions, most recent loaded
 ;; seed data, second most recent loaded schema
@@ -303,6 +279,7 @@
 (let [db-since-data (-> conn db (d/since data-tx-date))]
   (println (count (q communities-query db-since-data))))
 
+
 ;; parse additional seed data file
 (def new-data-tx (read-string (slurp "samples/seattle/seattle-data1.edn")))
 
@@ -323,14 +300,15 @@
 (let [db-since-data (-> conn db (d/since data-tx-date))]
   (println (count (q communities-query db-since-data))))
 
+
 ;; make a new partition
 @(d/transact conn [{:db/id (d/tempid :db.part/db)
-                    :db/ident :communities
-                    :db.install/_partition :db.part/db}])
+                      :db/ident :communities
+                      :db.install/_partition :db.part/db}])
 
 ;; make a new community
 @(d/transact conn [{:db/id (d/tempid :communities)
-                    :community/name "Easton"}])
+                      :community/name "Easton"}])
 
 ;; get id for a community, use to transact data
 (def belltown-id (q '[:find ?id .
@@ -339,7 +317,7 @@
                     (db conn)))
 
 @(d/transact conn [{:db/id belltown-id
-                    :community/category "free stuff"}])
+                      :community/category "free stuff"}])
 
 ;; retract data for a community
 @(d/transact conn [[:db/retract belltown-id :community/category "free stuff"]])
@@ -356,7 +334,7 @@
 (def queue (d/tx-report-queue conn))
 
 @(d/transact conn [{:db/id (d/tempid :communities)
-                    :community/name "Easton"}])
+                      :community/name "Easton"}])
 
 (when-let [report (.poll queue)]
   (pprint (seq (q '[:find ?e ?aname ?v ?added
@@ -366,4 +344,5 @@
                     [?a :db/ident ?aname]]
                   (:db-after report)
                   (:tx-data report)))))
+
 

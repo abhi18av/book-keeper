@@ -10,8 +10,7 @@
 
 (ns datomic.samples.mbrainz
   (:require [clojure.pprint :refer (pprint)]
-            [datomic.api :as d]
-            [datomic.samples.mbrainz.rules :refer (rules)]))
+            [datomic.api :as d]))
 
 ;; this file is intended for evaluation, form-by-form, at the REPL
 
@@ -21,6 +20,7 @@
 (def uri "datomic:free://localhost:4334/mbrainz-1968-1973")
 
 (def conn (d/connect uri))
+
 (def db (d/db conn))
 
 ;;;;;;;;;;;;;;; REPL safety and convenience ;;;;;;;;;;;;;;;;;;
