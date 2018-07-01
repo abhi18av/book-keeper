@@ -8,6 +8,13 @@
                  [fulcrologic/fulcro "2.3.1"]
                  [fulcrologic/fulcro-spec "2.0.3-1" :scope "test" :exclusions [fulcrologic/fulcro]]
 
+                ;; Deep Learning 4j clojure wrapper
+
+                [hswick/jutsu.ai "0.1.5"]
+                [org.nd4j/nd4j-native-platform "1.0.0-beta"]
+
+                ;; Threadpool
+;                https://github.com/TheClimateCorporation/claypoole
 ;; Pretty printing
 ;;                 [fipp "0.6.12"]
 
@@ -171,8 +178,8 @@
                  [zcaudate/lucid "1.4.4"]
 
                  [environ "1.1.0"]
-
-
+;; Parallel functions
+;                https://github.com/reborg/parallel
                  [org.onyxplatform/onyx "0.12.7"]
 
 ;; For remote data access - haxl
