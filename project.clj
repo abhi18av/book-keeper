@@ -30,6 +30,12 @@
   ;; Unix4j
                  [org.unix4j/unix4j-command "0.5"]
 
+  ;; Hash sums
+                 [pandect "0.6.1"]
+
+  ;; Neo4j graph database
+                 [gorillalabs/neo4j-clj "1.1.0"]
+                 ;[clojurewerkz/neocons "3.2.0"]
 
   ;; SQL
                  ;[walkable "1.0.0-SNAPSHOT"]
