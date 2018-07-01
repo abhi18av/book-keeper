@@ -35,7 +35,6 @@
 
   ;; Neo4j graph database
                  [gorillalabs/neo4j-clj "1.1.0"]
-                 ;[clojurewerkz/neocons "3.2.0"]
 
   ;; SQL
                  ;[walkable "1.0.0-SNAPSHOT"]
