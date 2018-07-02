@@ -30,15 +30,9 @@
 (with-open [session (db/get-session local-db)]
   (create-user session {:user {:first-name "Luke" :last-name "Skywalker"}}))
 
-(with-open [session (db/get-session local-db)]
-(create-user session {:user {:firstName "Luke" :lastName "Skywalker"}}))
-
 ;; Using a session
 (with-open [session (db/get-session local-db)]
   (create-user session {:user {:first-name "Babu" :middle-name '"Django 2"' :last-name "Fett"}}))
-
-
-
 
   ;; Using a transaction
 (db/with-transaction local-db tx
@@ -49,16 +43,16 @@
   ("MATCH (u:user) RETURN u as user" tx)) ;; => ({:user {:first-name "Luke", :last-name "Skywalker"}}))
 
 (db/defquery get-darth-vader
-  "MATCH (u:user) RETURN u as user")
+  "MATCH (u:user ) RETURN user")
 
 
 
-(db/with-transaction local-db tx
-  ("MATCH (user {middleName: '\"Darth Vader\"'}) RETURN user" tx)) ;; => ({:user {:first-name "Luke", :last-name "Skywalker"}}))
+;; (db/with-transaction local-db tx
+;;   ("MATCH (user {middleName: '\"Darth Vader\"'}) RETURN user" tx)) ;; => ({:user {:first-name "Luke", :last-name "Skywalker"}}))
 
 
-(db/with-transaction local-db tx
-  ("MATCH (cloudAtlas {title: '\"Cloud Atlas\"'}) RETURN cloudAtlas" tx))
+;; (db/with-transaction local-db tx
+;;   ("MATCH (cloudAtlas {title: '\"Cloud Atlas\"'}) RETURN cloudAtlas" tx))
 
 
 ;; TODO: Get this to work with escaped strings

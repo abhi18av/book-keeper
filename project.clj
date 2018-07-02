@@ -33,6 +33,9 @@
   ;; Hash sums
                  [pandect "0.6.1"]
 
+  ;; Core.async
+                 [org.clojure/core.async "0.4.474"]
+
   ;; Onyx platform
                  [org.onyxplatform/onyx "0.13.0"]
                  [org.onyxplatform/onyx-sql "0.13.0.1"]
@@ -76,5 +79,9 @@
                  [me.raynes/conch "0.8.0"]
 
 
+  ;; DeepLearning4j
+
+                 [hswick/jutsu.ai "0.1.5"]
+                 [org.nd4j/nd4j-native-platform "1.0.0-beta"]
 
   ])
