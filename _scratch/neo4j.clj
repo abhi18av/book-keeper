@@ -35,9 +35,13 @@
   ;(get-users-by-middlename tx {:middleName "Darth Vader"}))
   ;(get-users-by-middlename tx {:middleName """Darth Vader"""}))
   ;(get-users-by-middlename tx {:middleName "\"Darth Vader\""}))
+)
 
 (with-open [session (db/get-session local-db)]
-  (get-users-by-middlename session {:middleName "Anakin"}))
+  ;(get-users-by-middlename session {:middleName "Darth Vader"}))
+  ;(get-users-by-middlename session {:middleName """Darth Vader"""}))
+  ;(get-users-by-middlename session {:middleName "\"Darth Vader\""}))
+)
 
 
 ;;;;
