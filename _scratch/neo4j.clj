@@ -14,7 +14,7 @@
   "CREATE (u:user $user)")
 
 (with-open [session (db/get-session local-db)]
-  (create-user session {:user {:firstName "Anakin" :middleName "Darth Vader" :lastName "Skywalker"}}))
+  (create-user session {:user {:firstName "Anakin" :middleName "\"Darth Vader\"" :lastName "Skywalker"}}))
 
 (with-open [session (db/get-session local-db)]
   (create-user session {:user {:firstName "Boba" :middleName "Django" :lastName "Fett"}}))
@@ -29,19 +29,13 @@
 ;;;;
 
 (db/defquery get-users-by-middlename
-  "MATCH (u:User {middleName: $middleName}) RETURN u as user")
+  "MATCH (u:user {middleName: $middleName}) RETURN u as user")
 
 (db/with-transaction local-db tx
-  ;(get-users-by-middlename tx {:middleName "Darth Vader"}))
-  ;(get-users-by-middlename tx {:middleName """Darth Vader"""}))
-  ;(get-users-by-middlename tx {:middleName "\"Darth Vader\""}))
-)
+  (get-users-by-middlename tx {:middleName "\"Darth Vader\""}))
 
 (with-open [session (db/get-session local-db)]
-  ;(get-users-by-middlename session {:middleName "Darth Vader"}))
-  ;(get-users-by-middlename session {:middleName """Darth Vader"""}))
-  ;(get-users-by-middlename session {:middleName "\"Darth Vader\""}))
-)
+  (get-users-by-middlename session {:middleName "\"Darth Vader\""}))
 
 
 ;;;;
@@ -62,3 +56,16 @@
 
 (db/with-transaction local-db tx
   (get-users-by-firstname tx {:firstName "Anakin"}))
+
+;;;; first name
+
+(db/defquery get-users-by-firstname
+  "MATCH (u:user {firstName: $firstName}) RETURN u as user")
+
+(db/with-transaction local-db tx
+ (get-users-by-firstname tx {:firstName "Anakin"}))
+
+(with-open [session (db/get-session local-db)]
+ (get-users-by-firstname session {:firstName "Anakin"}))
+
+
