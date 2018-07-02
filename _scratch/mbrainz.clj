@@ -18,7 +18,7 @@
 
 ;; Replace with your transactor's connection information
 ;  (def uri "datomic:free://localhost:4334/mbrainz-1968-1973")
-  (def uri "datomic:dev://localhost:4664/mbrainz-1968-1973")
+(def uri "datomic:dev://localhost:4334/mbrainz-1968-1973")
 
 (def conn (d/connect uri))
 
