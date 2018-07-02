@@ -33,6 +33,11 @@
   ;; Hash sums
                  [pandect "0.6.1"]
 
+  ;; Onyx platform
+                 [org.onyxplatform/onyx "0.13.0"]
+                 [org.onyxplatform/onyx-sql "0.13.0.1"]
+                 [org.onyxplatform/onyx-datomic "0.13.0.0"]
+
   ;; Neo4j graph database
                  [gorillalabs/neo4j-clj "1.1.0"]
 

@@ -58,7 +58,7 @@
 
 
 (db/with-transaction local-db tx
-  ("MATCH (cloudAtlas {title: 'Cloud Atlas'}) RETURN cloudAtlas" tx))
+  ("MATCH (cloudAtlas {title: '\"Cloud Atlas\"'}) RETURN cloudAtlas" tx))
 
 
 ;; TODO: Get this to work with escaped strings
