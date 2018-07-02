@@ -29,17 +29,17 @@
 (with-open [session (db/get-session local-db)]
   (create-user session {:user {:firstName "Anakin" :middleName "Darth Vader" :lastName "Skywalker"}}))
 
-;; Using a session
-(with-open [session (db/get-session local-db)]
-  (create-user session {:user {:firstName "Luke" :lastName "Skywalker"}}))
+;; ;; Using a session
+;; (with-open [session (db/get-session local-db)]
+;;   (create-user session {:user {:firstName "Luke" :lastName "Skywalker"}}))
+
+;; ;; Using a session
+;; (with-open [session (db/get-session local-db)]
+;;   (create-user session {:user {:firstName "Babu" :middleName "Artengo" :lastName "Fett"}}))
 
 ;; Using a session
 (with-open [session (db/get-session local-db)]
-  (create-user session {:user {:firstName "Babu" :middleName '"Artengo" ':lastName "Fett"}}))
-
-;; Using a session
-(with-open [session (db/get-session local-db)]
-  (create-user session {:user {:firstName "Boba" :middleName '"Django" ':lastName "Fett"}}));; Using a transaction
+  (create-user session {:user {:firstName "Boba" :middleName "Django" :lastName "Fett"}}));; Using a transaction
 
 (db/defquery get-all-users
   "MATCH (u:user) RETURN u as user")
@@ -54,15 +54,15 @@
   "MATCH (u:User {middleName: $middleName}) RETURN u as user")
 
 (db/with-transaction local-db tx
-  ;(get-users-by-middlename tx {:middleName "Darth Vader"}))
+  (get-users-by-middlename tx {:middleName "Darth Vader"}))
+  ;(get-users-by-middlename tx {:middleName """Darth Vader"""}))
   ;(get-users-by-middlename tx {:middleName "\"Darth Vader\""}))
-  (get-users-by-middlename tx {:middleName """Darth Vader"""}))
 
 (db/defquery get-users-by-firstname
   "MATCH (u:User {firstName: $firstName}) RETURN u as user")
 
 (db/with-transaction local-db tx
-  (get-users-by-firstname tx {:firstName "Anakin"}))
+  (get-users-by-firstname tx {:firstName "\"Anakin\""}))
 
 ;;;;
 
