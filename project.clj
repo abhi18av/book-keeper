@@ -14,6 +14,14 @@
   :dependencies [
                  [org.clojure/clojure "1.9.0"]
 
+
+
+  ;; Oracle Db
+
+                 [org.clojure/java.jdbc "0.7.7"]
+  ;; PostgreSQL
+
+
   ;; Datomic free and pro
                  [com.datomic/datomic-free "0.9.5703"]
                  [com.datomic/datomic-pro "0.9.5703"]
@@ -65,7 +73,6 @@
   ;; CSV
                  [org.clojure/data.csv "0.1.4"]
 
-
   ;; For TOML
                  [toml "0.1.2"]
 
@@ -84,4 +91,7 @@
                  [hswick/jutsu.ai "0.1.5"]
                  [org.nd4j/nd4j-native-platform "1.0.0-beta"]
 
+  ;; Faker libraries
+                 [com.github.javafaker/javafaker "0.12"]
+                 [talltale "0.2.11"]
   ])

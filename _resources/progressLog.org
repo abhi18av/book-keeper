@@ -52,3 +52,7 @@
 
 * File Metadata
 ** https://github.com/xsc/pandect
+
+* jRuby faker gem
+jruby -S gem install faker 
+https://github.com/stympy/faker
