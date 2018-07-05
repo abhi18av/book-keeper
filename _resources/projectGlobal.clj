@@ -215,6 +215,9 @@
 
                  [fullcontact/full.async "1.0.0"]
                  [org.clojure/core.async "0.4.474"]
+;; Unix4j
+                 ;[org.unix4j/unix4j-command "0.5"]
+
 
 
                  [org.clojure/core.match "0.3.0-alpha5"]

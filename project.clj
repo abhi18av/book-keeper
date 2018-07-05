@@ -14,29 +14,23 @@
   :dependencies [
                  [org.clojure/clojure "1.9.0"]
 
+  ;; String manipulation
+                 [funcool/cuerdas "2.0.5"]
 
-
-  ;; Oracle Db
-
-                 [org.clojure/java.jdbc "0.7.7"]
-  ;; PostgreSQL
-
+  ;; Shell library
+                 [me.raynes/conch "0.8.0"]
 
   ;; Datomic free and pro
                  [com.datomic/datomic-free "0.9.5703"]
                  [com.datomic/datomic-pro "0.9.5703"]
 
   ;; Rules engine
-
                  [com.cerner/clara-rules "0.18.0"]
 
   ;; zcaudate
                  [zcaudate/spirit "0.9.0"]
                  [zcaudate/hara "2.8.6"]
                  [zcaudate/lucid "1.4.6"]
-
-  ;; Unix4j
-                 [org.unix4j/unix4j-command "0.5"]
 
   ;; Hash sums
                  [pandect "0.6.1"]
@@ -53,7 +47,10 @@
                  [gorillalabs/neo4j-clj "1.1.0"]
 
   ;; SQL
-                 ;[walkable "1.0.0-SNAPSHOT"]
+                 [walkable "1.0.0-SNAPSHOT"]
+                 [honeysql "0.9.3"]
+                 [nilenso/honeysql-postgres "0.2.4"]
+                 [org.clojure/java.jdbc "0.7.7"]
 
 
   ;; This is for traversing the nested clojure data structure
