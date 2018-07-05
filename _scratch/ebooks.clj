@@ -22,8 +22,8 @@
 (nth files 0)
 
 
-(mapv str (filter #(.isFile %) (file-seq folder))))
-
+(mapv str (filter #(.isFile %) (file-seq folder)))
+(println 
 (let [grammar-matcher (.getPathMatcher
                        (java.nio.file.FileSystems/getDefault)
                        "glob:*.{pdf, epub, mobi, mp4}")]
@@ -32,17 +32,17 @@
        file-seq
        (filter #(.isFile %))
        (filter #(.matches grammar-matcher (.getFileName (.toPath %))))
-       (mapv #(.getAbsolutePath %))))
+       (mapv #(.getAbsolutePath %)))))
 
 
 
 
 
 (require '[clojure.java.io :as io]
-'[cognitect.transit :as t])
+         '[cognitect.transit :as t])
 
 
-  (def direc "./_scratch/")
+(def direc "./_scratch/")
 
 (defn write-transit [dir file-name file-type coll]
 (let [suffix {:json ".json" :json-verbose ".verbose.json" :msgpack ".mp"}]
