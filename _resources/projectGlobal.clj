@@ -218,6 +218,8 @@
 ;; Unix4j
                  ;[org.unix4j/unix4j-command "0.5"]
 
+;; Emails via clojrue
+                [com.draines/postal "2.0.2"]
 
 
                  [org.clojure/core.match "0.3.0-alpha5"]
