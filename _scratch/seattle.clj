@@ -17,7 +17,7 @@
 (def conn (d/connect uri))
 
 ;; parse schema edn file
-(def schema-tx (read-string (slurp "_resources/datomic-free-0.9.5703/samples/seattle/seattle-schema.edn")))
+(def schema-tx (read-string (slurp "/Users/eklavya/projects/code/_softwares/datomic-free-0.9.5703/samples/seattle/seattle-schema.edn")))
 
 ;; display first statement
 (first schema-tx)
@@ -26,7 +26,9 @@
 @(d/transact conn schema-tx)
 
 ;; parse seed data edn file
-(def data-tx (read-string (slurp "_resources/datomic-free-0.9.5703/samples/seattle/seattle-data0.edn")))
+(def data-tx (read-string (slurp "/Users/eklavya/projects/code/_softwares/datomic-free-0.9.5703/samples/seattle/seattle-data0.edn")))
+
+
 
 ;; display first three statements in seed data transaction
 (first data-tx)

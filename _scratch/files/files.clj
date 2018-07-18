@@ -1,16 +1,64 @@
-;; I'll start dealing with the ebooks in a directory
+(use 'clojure.pprint)
+(require '[clojure.edn :as edn])
 
-(with-open [rdr (clojure.java.io/reader "/Users/eklavya/projects/code/book-keeper/_scratch/files.txt")]
+(with-open [rdr (clojure.java.io/reader "/Users/eklavya/projects/code/book-keeper/_scratch/files/files.txt")]
   (count (line-seq rdr)))
 
+;;(def head-of-file 0)
 
-(with-open [r (clojure.java.io/reader "/Users/eklavya/projects/code/book-keeper/_scratch/files.txt")]
+(with-open [r (clojure.java.io/reader "/Users/eklavya/projects/code/book-keeper/_scratch/files/files.txt")]
   (doseq [line (line-seq r)]
     (println line)))
 
+
+
+;; Lazy read only the first n lines from a file
+(defn read-n-lines [n]
+  (with-open [rdr (clojure.java.io/reader "/Users/eklavya/projects/code/book-keeper/_scratch/files/files.txt")]
+    (let [ls (line-seq rdr)]
+      (doall (take n ls)))))
+
+
+(def head-of-file
+  (read-n-lines 10))
+
+
+(pprint head-of-file)
+
+;; TODO: Now we must define the functions to operate on this first-line <v>
+
+(require '[cuerdas.core :as str])
+
+(def a-path-string (nth head-of-file 0))
+
+a-path-string
+
+
+;; This finds the name of the disk
+; ( disk-name a-path-string)
+(defn disk-name [a-path-string]
+  (second (str/split  a-path-string "/")))
+
+
+;; This finds the list of folders involved in the absolute file name
+; (list-of-folders a-path-string)
+(defn list-of-folders [a-path-string]
+  (drop 1
+        (drop-last
+         (str/split  a-path-string "/"))))
+
+;; This retrieves the actual file name
+; (file-name a-path-string)
+(defn file-name [a-path-string]
+  (last (str/split  a-path-string "/")))
+
+
+;; Find details about a file
+
+
 ;;;;;;;;;;;;
-(use 'clojure.pprint)
-(require '[clojure.edn :as edn])
+
+
 (require '[taoensso.nippy :as nippy])
 
 
